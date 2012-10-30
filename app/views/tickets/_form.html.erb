@@ -1,0 +1,87 @@
+<%= form_for(@ticket) do |f| %>
+<fieldset >
+      <legend><%= controller.action_name.capitalize %> Ticket</legend>
+<% if @ticket.errors.any? %>
+  <div class="alert alert-error"> <a class="close" data-dismiss="alert" href="#">×</a>
+    <h2><%= pluralize(@ticket.errors.count, "error") %></h2>
+    <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+  
+  <div style="width:50%" >
+    <table class="table table-bordered">
+     <tr> 
+       <td><%= f.label :name, :class => "control-label"%>
+       <td><%= f.text_field :name, :class => "text_field" %>	 
+      <tr>
+	<td><%= f.label :email_id, :class => "control-label" %>
+        <td><%= f.text_field :email_id, :class => "text_field" %>
+      </tr>
+      <tr>
+
+
+	<td><%= f.label :ticket_subject, :class => "control-label" %>
+	<td><%= f.text_field :ticket_subject, :class => "text_field" %>
+      </tr>
+      <tr>
+	<td><%= f.label :date_time, "Date Time" %>
+        <td><%= f.text_field :date_time, :readonly => true %>
+      </tr>
+
+<tr>
+ 	
+
+</tr>
+
+<tr>
+
+
+	<td><%= f.label :priority, "Priority" %>
+	<td><%= f.select :priority, :collection => [nil,'High', 'Medium','low'] %>
+</tr>	
+
+       <tr>
+	 <td><%= f.label :category, "Category" %>
+        <td><%= f.select :category, :collection => [nil,'Admin', 'CMS','DRS/DMS', 'Daily Reports', 'Email/Account', 'Hardware', 'Software', 'other'] %>
+
+<tr>  
+<td> 
+
+
+
+
+   <%= f.label :attachment %>
+<td><%= image_tag (@ticket.attachment_url) if @ticket.attachment? %>
+ <%= f.file_field :attachment %>
+    <%= f.hidden_field :attachment_cache %>	
+
+  
+
+</tr>
+    
+	<tr> 	
+	  <td><%= f.label :messages, "Message" %>
+	  <td><%=f.text_area :messages, :cols => 150, :rows => 4 %>
+	</tr>
+    
+	<td><div class="form-action">
+
+	    <%= f.submit nil, :class => "btn btn-primary" %>
+	   <% if current_user %>
+	    <%= link_to 'Cancel', tickets_path, :class => "btn" %>	
+	    <% end %>
+	
+	  </div>
+      </tr>
+</tr> 
+</table>
+</div>
+</table>
+</div>
+</fieldset>
+<% end %>
+

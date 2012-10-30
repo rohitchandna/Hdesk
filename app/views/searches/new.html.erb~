@@ -1,0 +1,20 @@
+
+
+<% form_for @search do |f| %>
+  <p>
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords %>
+  </p>
+  <p>
+    <%= f.label :ticket_id %><br />
+    <%= f.collection_select :ticket_id, ticket.all, :id, :name, :include_blank => true %>
+  </p>
+  <p>
+    Price Range<br />
+    <%= f.text_field :minimum_price, :size => 7 %> -
+    <%= f.text_field :maximum_price, :size => 7 %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+
+

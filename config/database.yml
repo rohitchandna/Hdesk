@@ -1,0 +1,32 @@
+defaults: &defaults
+  adapter: postgres
+  
+development:
+  database: deskadmin_dev
+  host: localhost
+  username: deskadmin
+  password: deskpassword
+  <<: *defaults
+
+  # Add more repositories
+  # repositories:
+  #   repo1:
+  #     adapter:  postgres
+  #     database: sample_development
+  #     username: the_user
+  #     password: secrets
+  #     host:     localhost
+  #     repo2:
+  #     ...
+
+test: &test
+  database: deskadmin_test
+  username: deskadmin
+  password: deskpassword
+  <<: *defaults
+production:
+  database: db/deskadmin_rails_production.db
+  <<: *defaults
+
+cucumber:
+  <<: *test

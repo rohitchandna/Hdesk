@@ -1,0 +1,66 @@
+    <%= form_tag tickets_path, :method => 'get' do %>  
+      <%= hidden_field_tag :direction, params[:direction] %>  
+      <%= hidden_field_tag :sort, params[:sort] %>  
+      <p>  
+        <%= text_field_tag :search, params[:search] %>  
+        <%= submit_tag "Search", :name => nil %>  
+      </p>  
+    <% end %>   
+
+
+
+<div class="span9"><h2>Hdesk</h2></div>
+ 
+<% @tickets.each do |ticket| %>
+
+<% end %>
+<div class="row">
+<div class="span6"><%= link_to 'View existing ticket', new_ticket_path, :class => "btn btn-primary" %> 
+
+<div class="span3"><%= link_to 'Add New Ticket', new_ticket_path, :class => "btn btn-primary" %>
+
+ 
+</div> 
+</div>
+</div>
+</div>
+<br>
+<br>
+
+<table class="table table-bordered">
+ <tr>
+	<th>Ticket subject</th>
+	<th>Priority</th>
+	<th>Date Time</th>
+	<th>Attachment</th>
+
+ </tr>
+	<% @tickets.each do |ticket| %>
+   <tr>
+	<td><%= ticket.ticket_subject %></td>
+	<td><%= ticket.priority %></td>
+	<td><%= ticket.date_time %></td>
+       <td><% t =  ticket.attachment %><% t = t.to_s %> <% new=  t.split('/').last %><%= new %></td>	
+
+         <% if can? :read, ticket %>
+	<td><%= link_to 'Show', ticket %></td>
+	<% end %>
+	  <% if can? :update, ticket %>
+    <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+    <% end %>
+      <% if can? :destroy, ticket %>
+    <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+
+  </tr>
+  </tr>	
+	
+
+<% end %>
+
+</table>
+
+
+
+
+

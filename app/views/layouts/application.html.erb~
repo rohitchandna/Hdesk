@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hdesk</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+    <div class="container">
+     
+    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </a>
+
+<a class="brand" href="/">Hdesk</a>
+
+ <ul class="nav pull-right"> 
+<% if current_user %>
+<li><%= current_user.role %>
+<li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li><% end %></li>
+  </ul>
+</div>
+</div>
+</div>
+
+<div class="container">
+
+<% if notice != nil %><div class="alert alert-error"> <a class="close" data-dismiss="alert" href="#">X</a><%= notice %></div><% end %>
+<% if alert != nil %><div class="alert alert-error"> <a class="close" data-dismiss="alert" href="#">X</a><%= alert %></div><% end %>
+
+
+         <%= yield %>
+
+<li>
+  <form method="get" id="search_result" action="/searches" class="navbar-search" >
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="search_string" id="search_search_string" class="search-query" placeholder="Search">
+</form>
+</li>
+
+</div>
+     
+</div>	
+
+</body>
+</html>

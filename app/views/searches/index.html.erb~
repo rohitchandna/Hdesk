@@ -1,0 +1,22 @@
+<h3>Search Result for: <font color ="green"><%= params[:search_string] %></font></h3>
+
+
+
+<table class="table table-bordered" >
+  <tr>
+    <th>Result Found</th>
+    <th>Section</th>
+
+  <% @searches.each do |search| %>
+<% path = search[:model].to_s.tableize %>
+
+    <tr>
+      <td><%= search[:result] %></td>
+      <td><%= search[:model] %></td>
+      <td><%= link_to 'Show Result', "#{path}/#{search[:id]}" %></td>
+    
+
+     </tr>
+   
+<% end %>
+</table>

@@ -1,0 +1,8 @@
+<h1>New ticket</h1>
+
+<%= render 'form' %>
+
+<%=raw recaptcha_tags %>
+
+
+<%= link_to 'Back', tickets_path %>

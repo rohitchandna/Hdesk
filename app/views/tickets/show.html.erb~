@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+
+<br><div class="row">
+  <div class="span6"><h2>Ticket Details</h2><%= link_to '(edit ticket)', edit_ticket_path(@ticket) %> </div>
+  
+  <% if current_user %>
+  <div class="span3"><%= link_to 'Back to Tickets', tickets_path %><% end %>
+  </div>
+</div>
+<div style= "width:40%">
+  <table class="table table-bordered" >
+    <tr>
+      <td><b>Ticket subject:<b></td>
+      <td><%= @ticket.ticket_subject %></td>
+   </tr>
+ <tr>
+	<td><b>Priority: <b></td>
+	<td><%= @ticket.priority %></td>
+</tr>
+
+    <tr>
+      		<td><b>Created Time: <b></td>
+                <td><%= @ticket.date_time %></td>   
+
+</tr>
+	<tr>
+		<td><b>Attachment: <b></td>
+		<td><%= @ticket.attachment %></td>
+ 	</tr>		
+		
+			
+</table>
+</div>
+
+
+
+
+ 
+
+
+
+
+
